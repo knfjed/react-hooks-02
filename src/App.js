@@ -17,6 +17,17 @@ const App = () => {
     );
   };
 
+  // 別の書き方
+  // const divide3 = () => {
+  //   setCount((previousCount) => {
+  //     if (previousCount % 3 === 0) {
+  //       return previousCount / 3;
+  //     } else {
+  //       return previousCount;
+  //     }
+  //   });
+  // };
+
   return (
     <>
       <div>cont: {count}</div>
