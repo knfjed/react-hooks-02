@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 
 const App = (props) => {
-  const [name, setName] = useState(props.name);
-  const [price, setPrice] = useState(props.price);
-  const reset = () => {
-    setPrice(props.price);
-    setName(props.name);
-  };
+  // stateにnameとpriceを集約
+  const [state, setState] = useState(props);
+  // 分割代入　state.name、state.priceを省略
+  const { name, price } = state;
 
   return (
     <>
       <p>
         現在の{name}は{price}円です
       </p>
-      {/* イベントを拾って、setNameで変更。e.target.valueはお約束 */}
-      <input value={name} onChange={(e) => setName(e.target.value)}></input>
-      <button onClick={() => setPrice(price + 1)}>+1</button>
-      <button onClick={() => setPrice(price - 1)}>-1</button>
-      <button onClick={reset}>reset</button>
+      <input
+        value={name}
+        onChange={(e) => setState({ ...state, name: e.target.value })}
+      ></input>
+      <button onClick={() => setState({ ...state, price: price + 1 })}>
+        +1
+      </button>
+      <button onClick={() => setState({ ...state, price: price - 1 })}>
+        -1
+      </button>
+      <button onClick={() => setState(props)}>reset</button>
     </>
   );
 };
